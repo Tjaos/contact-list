@@ -4,8 +4,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/Home";
 import LoginScreen from "./screens/Login";
 import CadastroScreen from "./screens/Register";
-import EditScreen from "./screens/Edit";
-
+import NumberRegistScreen from "./screens/NumberRegist";
+import NumberEditScreen from "./screens/NumberEdit";
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -28,9 +28,14 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Edit"
-          component={EditScreen}
-          options={{ headerShown: false }}
+          name="NumRegist"
+          component={NumberRegistScreen}
+          options={{ headerShown: true, title: "Adicionar Contato" }}
+        />
+        <Stack.Screen
+          name="NumEdit"
+          component={NumberEditScreen}
+          options={{ headerShown: true, title: "Contato" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
