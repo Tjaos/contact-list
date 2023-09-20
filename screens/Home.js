@@ -55,8 +55,8 @@ export default function HomeScreen({  navigation }) {
               onPress={() =>
                 navigation.navigate("NumEdit", {
                   nome: linha.nome,
-                  sobrenome: linha.sobrenome,
-                  numero: linha.numero,
+                  email: linha.email,
+                  telefone: linha.telefone,
                 })
               }
             />

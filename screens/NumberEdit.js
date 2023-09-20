@@ -1,8 +1,12 @@
 import * as React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button, Input } from "react-native-elements";
+import { useRoute } from '@react-navigation/native';
 
-export default function NumberEditScreen() {
+export default function NumberEditScreen({ navigation }) {
+  const route = useRoute(); 
+  const { nome, email, telefone } = route.params; 
+
   return (
     <View style={styles.container}>
       <View
@@ -15,7 +19,7 @@ export default function NumberEditScreen() {
         }}
       >
         <Text style={styles.texts}>Nome</Text>
-        <Input style={styles.inputs} />
+        <Input style={styles.inputs} value={nome} /> 
       </View>
 
       <View
@@ -28,7 +32,7 @@ export default function NumberEditScreen() {
         }}
       >
         <Text style={styles.texts}>Email</Text>
-        <Input style={styles.inputs} />
+        <Input style={styles.inputs} value={email} /> 
       </View>
       <View
         style={{
@@ -40,7 +44,7 @@ export default function NumberEditScreen() {
         }}
       >
         <Text style={styles.texts}>Telefone</Text>
-        <Input style={styles.inputs} />
+        <Input style={styles.inputs} value={telefone} /> 
       </View>
       <View style={{ marginTop: 30 }}>
         <Button
