@@ -20,7 +20,7 @@ export default function HomeScreen({  navigation }) {
         });
     }
     consultarDados();
-  });
+  },[]);
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
