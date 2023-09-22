@@ -4,43 +4,50 @@
       "id": 1,
       "nome": "Marcos Júnior",
       "email": "123@example.com",
-      "telefone": "(81)9999-9999"
+      "telefone": "(81)9999-9999",
+      "cpf": "123456789101"
     },
     {
       "id": 2,
       "nome": "Ana Glória",
       "email": "123@example.com",
-      "telefone": "(81)9999-9999"
+      "telefone": "(81)9999-9999",
+      "cpf": "123456789101"
     },
     {
       "id": 3,
       "nome": "Fábio Vicente",
       "email": "123@example.com",
-      "telefone": "(81)9999-9999"
+      "telefone": "(81)9999-9999",
+      "cpf": "123456789101"
     },
     {
       "id": 4,
       "nome": "Márcio Silva",
       "email": "123@example.com",
-      "telefone": "(81)9999-9999"
+      "telefone": "(81)9999-9999",
+      "cpf": "123456789101"
     },
     {
       "id": 5,
       "nome": "Jonathan Amaral",
       "email": "123@example.com",
-      "telefone": "(81)9999-9999"
+      "telefone": "(81)9999-9999",
+      "cpf": "123456789101"
     },
     {
       "id": 6,
       "nome": "Carlos Alberto",
       "email": "123@example.com",
-      "telefone": "(81)9999-9999"
+      "telefone": "(81)9999-9999",
+      "cpf": "123456789101"
     },
     {
+      "id": 7,
       "nome": "Thiago Amaral",
       "email": "123@example.com",
       "telefone": "(81)9999-9999",
-      "id": 7
+      "cpf": "123456789101"
     }
   ]
 }

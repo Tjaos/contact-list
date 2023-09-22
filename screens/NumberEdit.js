@@ -1,12 +1,29 @@
 import * as React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { useRoute } from '@react-navigation/native';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function NumberEditScreen({ navigation }) {
+  const [getId, setId] = useState();
+  const [getNome, setNome] = useState();
+  const [getCpf, setCpf] = useState();
+  const [getEmail, setEmail] = useState();
+  const [getTelefone, setTelefone] = useState();
   const route = useRoute(); 
-  const { nome, email, telefone } = route.params; 
+  useEffect(()=>{
+    if (route.params){
+      const { id, nome, email, cpf, telefone } = route.params; 
 
+      setNome(nome);
+      setEmail(email);
+      setCpf(cpf);
+      setTelefone(telefone);
+      setId(id);
+    }
+  },[]);
+  
   return (
     <View style={styles.container}>
       <View
@@ -19,7 +36,8 @@ export default function NumberEditScreen({ navigation }) {
         }}
       >
         <Text style={styles.texts}>Nome</Text>
-        <Input style={styles.inputs} value={nome} /> 
+        <Input style={styles.inputs} onChangeText={(text) => setNome(text)}
+        value={getNome} /> 
       </View>
 
       <View
@@ -32,7 +50,8 @@ export default function NumberEditScreen({ navigation }) {
         }}
       >
         <Text style={styles.texts}>Email</Text>
-        <Input style={styles.inputs} value={email} /> 
+        <Input style={styles.inputs} onChangeText={(text) => setEmail(text)}
+        value={getEmail} /> 
       </View>
       <View
         style={{
@@ -44,7 +63,8 @@ export default function NumberEditScreen({ navigation }) {
         }}
       >
         <Text style={styles.texts}>Telefone</Text>
-        <Input style={styles.inputs} value={telefone} /> 
+        <Input style={styles.inputs} onChangeText={(text)=>setTelefone(text)}
+        value={getTelefone} /> 
       </View>
       <View style={{ marginTop: 30 }}>
         <Button
