@@ -3,9 +3,11 @@ import { View, ScrollView, StyleSheet } from "react-native";
 import { Button, Header, ListItem, Avatar } from "react-native-elements";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function HomeScreen({ navigation }) {
   const [list, setlist] = useState([]);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     function consultarDados() {
@@ -20,7 +22,7 @@ export default function HomeScreen({ navigation }) {
         });
     }
     consultarDados();
-  }, []);
+  }, [isFocused]);
 
   return (
     <View>
