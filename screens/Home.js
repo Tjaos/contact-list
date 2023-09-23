@@ -4,7 +4,7 @@ import { Button, Header, ListItem, Avatar } from "react-native-elements";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export default function HomeScreen({  navigation }) {
+export default function HomeScreen({ navigation }) {
   const [list, setlist] = useState([]);
 
   useEffect(() => {
@@ -20,45 +20,35 @@ export default function HomeScreen({  navigation }) {
         });
     }
     consultarDados();
-  },[]);
+  }, []);
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+    <View>
       <Header
-        backgroundColor="gray"
-        centerComponent={{
-          text: "Lista de Contatos",
-          style: {
-            color: "#fff",
-            width: 400,
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 30,
-          },
+
+        leftComponent={{
+          text:"Sair", style: {color: "#fff"},
+          onPress: () => navigation.navigate("Login"),
+          iconStyle: { color: "#fff" },
         }}
+        centerComponent={{ text: "Listagem", style: { color: "#fff" } }}
         rightComponent={
           <Button title="+" onPress={() => navigation.navigate("NumRegist")} />
         }
-        leftComponent={
-          <Button title="<" onPress={() => navigation.navigate("Login")} />
-        }
       />
-      <ScrollView style={{width:"100%"}}>
+      <ScrollView>
         {list.map((linha, indice) => (
-          <ListItem key={indice} style={{width:"100%"}} bottomDivider>
+          <ListItem key={indice} bottomDivider>
             <Avatar
-              size={45}
-              rounded
               source={{
                 uri: "https://www.gravatar.com/avatar/000000000000000000000000000?d=wavatar&f=y",
               }}
               onPress={() =>
                 navigation.navigate("NumEdit", {
-                  id: linha.id,
                   nome: linha.nome,
-                  email: linha.email,
-                  cpf: linha.cpf,
                   telefone: linha.telefone,
+                  email: linha.email,
+                  id: linha.id,
                 })
               }
             />
@@ -73,11 +63,72 @@ export default function HomeScreen({  navigation }) {
   );
 }
 
+
+
+
+
+/*
+return (
+  <View style={{ flex: 1, alignItems: "center", justifyContent: "center", width:"100%" }}>
+    <Header
+    style={{width:"100%"}}
+      leftComponent={{
+        icon: "arrow-back",
+        color: "#fff",
+        onPress: () => navigation.navigate("Login"),
+        iconStyle: { color: "#fff" },
+      }}
+      backgroundColor="gray"
+      centerComponent={{
+        text: "Lista de Contatos",
+        style: {
+          color: "#fff",
+          minWidth: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 30,
+        },
+      }}
+      rightComponent={
+        <Button title="+" onPress={() => navigation.navigate("NumRegist")} />
+      }
+    />
+    <ScrollView style={{ width: "100%" }}>
+      {list.map((linha, indice) => (
+        <ListItem key={indice} style={{ width: "100%" }} bottomDivider>
+          <Avatar
+            size={45}
+            rounded
+            source={{
+              uri: "https://www.gravatar.com/avatar/000000000000000000000000000?d=wavatar&f=y",
+            }}
+            onPress={() =>
+              navigation.navigate("NumEdit", {
+                id: linha.id,
+                nome: linha.nome,
+                email: linha.email,
+                cpf: linha.cpf,
+                telefone: linha.telefone,
+              })
+            }
+          />
+          <ListItem.Content>
+            <ListItem.Title>{linha.nome}</ListItem.Title>
+            <ListItem.Subtitle>{linha.email}</ListItem.Subtitle>
+          </ListItem.Content>
+        </ListItem>
+      ))}
+    </ScrollView>
+  </View>
+);
+}
+
 const styles = StyleSheet.create({
-  views: {
-    marginBottom: 15,
-    padding: 10,
-    backgroundColor: "#d3d3d3",
-    width: 450,
-  },
+views: {
+  marginBottom: 15,
+  padding: 10,
+  backgroundColor: "#d3d3d3",
+  width: "100%",
+},
 });
+*/

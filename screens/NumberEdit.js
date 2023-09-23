@@ -85,25 +85,25 @@ export default function NumberEditScreen({ navigation }) {
         }}
       />
       <View style={styles.containerLogin}>
-        <Text style={styles.loginText}>Digite seu Nome</Text>
+        <Text style={styles.loginText}> Nome</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setNome(text)}
           value={getNome}
         ></TextInput>
 
-        <Text style={styles.loginText}>Digite seu Telefone</Text>
+        <Text style={styles.loginText}> Telefone</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setTelefone(text)}
           value={getTelefone}
         ></TextInput>
 
-        <Text style={styles.loginText}>Digite seu Cpf</Text>
+        <Text style={styles.loginText}>Email</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(text) => setCpf(text)}
-          value={getCpf}
+          onChangeText={(text) => setEmail(text)}
+          value={getEmail}
         ></TextInput>
 
         <TouchableOpacity

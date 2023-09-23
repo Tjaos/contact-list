@@ -30,7 +30,7 @@ function App() {
         <Stack.Screen
           name="NumRegist"
           component={NumberRegistScreen}
-          options={{ headerShown: true, title: "Adicionar Contato" }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="NumEdit"
