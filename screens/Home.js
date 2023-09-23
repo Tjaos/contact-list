@@ -15,7 +15,10 @@ export default function HomeScreen({ navigation }) {
         .get(`http://localhost:3000/contatos`)
 
         .then(function (response) {
-          setlist(response.data);
+          const sortedList = response.data.sort((a,b)=>
+          a.nome.localeCompare(b.nome)
+          );
+          setlist(sortedList);
         })
         .catch(function (error) {
           console.log(error);

@@ -85,21 +85,21 @@ export default function NumberEditScreen({ navigation }) {
         }}
       />
       <View style={styles.containerLogin}>
-        <Text style={styles.loginText}> Nome</Text>
+        <Text style={styles.titleText}> Nome</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setNome(text)}
           value={getNome}
         ></TextInput>
 
-        <Text style={styles.loginText}> Telefone</Text>
+        <Text style={styles.titleText}> Telefone</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setTelefone(text)}
           value={getTelefone}
         ></TextInput>
 
-        <Text style={styles.loginText}>Email</Text>
+        <Text style={styles.titleText}>Email</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setEmail(text)}
@@ -117,7 +117,7 @@ export default function NumberEditScreen({ navigation }) {
           onPress={() => messageDelete()}
           
         >
-          <Text style={styles.botaoLogin}>Excluir</Text>
+          <Text style={styles.botaoDelete}>Excluir Registro</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -137,36 +137,43 @@ const styles = StyleSheet.create({
   },
   input: {
     alignItems: "center",
-    height: 55,
+    justifyContent: "center",
+    height: 40,
     width: "85%",
     backgroundColor: "#ffffff",
+    top: "2%",
     borderRightWidth: 1,
     borderLeftWidth: 1,
     borderTopWidth: 1,
     borderBottomWidth: 1,
   },
-  loginText: {
-    fontSize: 25,
+  titleText: {
+    fontSize: 20,
+    marginTop: 20,
   },
   botaoLog: {
-    width: "85%",
-    height: 70,
+    width:100,
+    padding: 10,
     backgroundColor: "#035BFF",
-    marginTop: 30,
+    marginTop: 50,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius:10
   },
   botaoLogin: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#ffff",
   },
   botaoExcluir: {
-    width: "85%",
-    height: 70,
-    backgroundColor: "red",
-    marginTop: 30,
-    justifyContent: "center",
-    alignItems: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "red",
+  },
+  botaoDelete: {
+    fontSize: 20,
+    paddingTop:50,
+    fontWeight: "bold",
+    color: "red",
   },
 });

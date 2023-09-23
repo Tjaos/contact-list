@@ -15,7 +15,7 @@ function App() {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ title: "Login de Usuário" }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Register"
