@@ -35,7 +35,7 @@ function App() {
         <Stack.Screen
           name="NumEdit"
           component={NumberEditScreen}
-          options={{ headerShown: true, title: "Contato" }}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
