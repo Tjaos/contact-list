@@ -1,12 +1,6 @@
 {
   "contatos": [
     {
-      "nome": "Marcos Júnior Lourenço",
-      "email": "123@example.com",
-      "telefone": "(81)9999-9999",
-      "id": 1
-    },
-    {
       "nome": "Thiago Amaral",
       "email": "123@example.com",
       "telefone": "(81)9999-9999",
@@ -31,12 +25,6 @@
       "id": 16
     },
     {
-      "nome": "Manoel",
-      "email": "manuel123@gmail.com",
-      "telefone": "8199999262",
-      "id": 17
-    },
-    {
       "nome": "Mayara Silva",
       "telefone": "(81)97777-8888",
       "email": "may123@exemplo.com",
@@ -44,9 +32,79 @@
     },
     {
       "nome": "carlos",
-      "telefone": "(81)91111-2222",
       "email": "carlin123@example.com",
+      "telefone": "(81)91111-2222",
       "id": 19
+    },
+    {
+      "nome": "Marcos Antonio",
+      "telefone": "(81)9999-8888",
+      "email": "123@123.com",
+      "id": 21
+    },
+    {
+      "nome": "Emelle Santana",
+      "telefone": "(81)9999-8888",
+      "email": "eme@123.com",
+      "id": 22
+    },
+    {
+      "nome": "Bruno César",
+      "email": "adol@123.com",
+      "telefone": "(81)9999-8888",
+      "id": 23
+    },
+    {
+      "nome": "Carmelita Soares",
+      "telefone": "(81)9999-8888",
+      "email": "carme@123.com",
+      "id": 24
+    },
+    {
+      "nome": "Miguel Rodrigues",
+      "telefone": "(81)97777-8888",
+      "email": "mig@123.com",
+      "id": 25
+    },
+    {
+      "nome": "Thiago Amaral",
+      "telefone": "(81)97777-8888",
+      "email": "tjaos@123.com",
+      "cpf": "12345678912",
+      "senha": "123456789",
+      "id": 26
+    }
+  ],
+  "usuario": [
+    {
+      "id": 1,
+      "nome": "Thiago Amaral",
+      "telefone": "(81)97777-8888",
+      "email": "tjaos@123.com",
+      "cpf": "12345678912",
+      "senha": "12345678910"
+    },
+    {
+      "nome": "Thiago Amaral",
+      "telefone": "(81)97777-8888",
+      "email": "tjaos@123.com",
+      "cpf": "12345678912",
+      "senha": "123456789",
+      "id": 2
+    },
+    {
+      "nome": "Jorge Lins Lacerda",
+      "cpf": "12345678912",
+      "email": "jorgin@123.com",
+      "senha": "123456789",
+      "id": 3
+    },
+    {
+      "nome": "paulo henrique",
+      "cpf": "123456789412",
+      "email": "paulo123",
+      "senha": "123",
+      "id": 4
     }
   ]
 }

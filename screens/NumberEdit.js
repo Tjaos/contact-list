@@ -54,13 +54,6 @@ export default function NumberEditScreen({ navigation }) {
       })
       .catch((error) => console.log(error));
   }
-  function messageDelete() {
-    showMessage({
-      message: "registro excluído com sucesso!",
-      type: "danger",
-    });
-    dataDelete();
-  }
 
   async function dataDelete() {
     await axios
@@ -70,6 +63,10 @@ export default function NumberEditScreen({ navigation }) {
         setTelefone(null),
         setCpf(null),
         setId(null),
+        showMessage({
+          message: "registro excluído com sucesso!",
+          type: "danger",
+        }),
         navigation.navigate("Home")
       )
       .catch((error) => console.log(error));
@@ -96,7 +93,7 @@ export default function NumberEditScreen({ navigation }) {
           },
         }}
       />
-      <View style={styles.containerLogin}>
+      <View style={styles.containerBox}>
         <Text style={styles.titleText}> Nome</Text>
         <TextInput
           style={styles.input}
@@ -123,7 +120,7 @@ export default function NumberEditScreen({ navigation }) {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.botaoExcluir}
-          onPress={() => messageDelete()}
+          onPress={() => dataDelete()}
         >
           <Text style={styles.botaoDelete}>Excluir Registro</Text>
         </TouchableOpacity>
@@ -138,7 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     alignItems: "center",
   },
-  containerLogin: {
+  containerBox: {
     top: "10%",
     alignItems: "center",
     width: "100%",

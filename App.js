@@ -20,7 +20,7 @@ function App() {
         <Stack.Screen
           name="Register"
           component={CadastroScreen}
-          options={{ title: "Cadastre-se" }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Home"

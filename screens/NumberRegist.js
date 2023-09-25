@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, TouchableOpacity } from "react-native";
-import { ListItem, Avatar, Header } from "react-native-elements";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { Header } from "react-native-elements";
 import axios from "axios";
 import FlashMessage, {showMessage} from "react-native-flash-message";
 
@@ -66,7 +66,7 @@ export default function NumberRegistScreen({ navigation }) {
           },
         }}
       />
-      <View style={styles.containerText}>
+      <View style={styles.containerBox}>
         <Text style={styles.inputText}>Nome</Text>
         <TextInput
           style={styles.input}
@@ -103,10 +103,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "100%",
   },
-  containerText: {
+  containerBox: {
     top: "1%",
     alignItems: "center",
-    width: "90%",
+    width: "100%",
     marginTop: 90
   },
   input: {
@@ -118,10 +118,7 @@ const styles = StyleSheet.create({
     width: "85%",
     backgroundColor: "#ffffff",
     top: "2%",
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderWidth: 1,
     borderRadius: 20,
   },
   inputText: {
