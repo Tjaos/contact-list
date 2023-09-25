@@ -1,6 +1,13 @@
 import * as React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, TouchableOpacity } from "react-native";
-import { useRoute } from '@react-navigation/native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native";
+import { useRoute } from "@react-navigation/native";
 import { ListItem, Avatar, Header } from "react-native-elements";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -26,27 +33,31 @@ export default function NumberEditScreen({ navigation }) {
   }, []);
 
   async function dataUpdate() {
+    if (!getNome || !getTelefone || !getEmail){
+      showMessage({
+        message: "Preencha todos os campos antes de salvar!",
+        type: "danger",});
+        return;
+    }
     await axios
       .put(`http://localhost:3000/contatos/${getId}`, {
         nome: getNome,
         email: getEmail,
         telefone: getTelefone,
       })
-      .then(() =>
+      .then(() =>{
         showMessage({
           message: "Alteração salva!",
           type: "success",
-        })
-      )
+        });
+        navigation.navigate("Home")
+      })
       .catch((error) => console.log(error));
-
   }
   function messageDelete() {
     showMessage({
       message: "registro excluído com sucesso!",
       type: "danger",
-      
-      
     });
     dataDelete();
   }
@@ -65,7 +76,8 @@ export default function NumberEditScreen({ navigation }) {
   }
 
   return (
-    <View>
+    <View
+    >
       <FlashMessage position="top" />
       <Header
         leftComponent={{
@@ -75,7 +87,7 @@ export default function NumberEditScreen({ navigation }) {
           iconStyle: { color: "#fff" },
         }}
         centerComponent={{
-          text: "Inserir Contato",
+          text: "Editar Contato",
           style: {
             color: "#fff",
             alignItems: "center",
@@ -106,16 +118,12 @@ export default function NumberEditScreen({ navigation }) {
           value={getEmail}
         ></TextInput>
 
-        <TouchableOpacity
-          style={styles.botaoLog}
-          onPress={() => dataUpdate()}
-        >
+        <TouchableOpacity style={styles.botaoLog} onPress={() => dataUpdate()}>
           <Text style={styles.botaoLogin}>Alterar</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.botaoExcluir}
           onPress={() => messageDelete()}
-          
         >
           <Text style={styles.botaoDelete}>Excluir Registro</Text>
         </TouchableOpacity>
@@ -136,9 +144,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   input: {
+    paddingLeft: 16,
+    fontSize: 15,
     alignItems: "center",
     justifyContent: "center",
-    height: 40,
+    height: 45,
     width: "85%",
     backgroundColor: "#ffffff",
     top: "2%",
@@ -146,19 +156,22 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderTopWidth: 1,
     borderBottomWidth: 1,
+    borderRadius: 20,
   },
   titleText: {
     fontSize: 20,
-    marginTop: 20,
+    marginTop: 5,
+    width: "85%",
+    padding: 10
   },
   botaoLog: {
-    width:100,
+    width: 100,
     padding: 10,
     backgroundColor: "#035BFF",
     marginTop: 50,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius:10
+    borderRadius: 10,
   },
   botaoLogin: {
     fontSize: 20,
@@ -172,7 +185,7 @@ const styles = StyleSheet.create({
   },
   botaoDelete: {
     fontSize: 20,
-    paddingTop:50,
+    paddingTop: 50,
     fontWeight: "bold",
     color: "red",
   },

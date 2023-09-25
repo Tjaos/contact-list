@@ -30,6 +30,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View>
       <Header
+      style={{alignItems: "center", justifyContent:"center",}}
 
         leftComponent={{
           text:"Sair", style: {color: "#fff"},
@@ -67,73 +68,3 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 }
-
-
-
-
-
-/*
-return (
-  <View style={{ flex: 1, alignItems: "center", justifyContent: "center", width:"100%" }}>
-    <Header
-    style={{width:"100%"}}
-      leftComponent={{
-        icon: "arrow-back",
-        color: "#fff",
-        onPress: () => navigation.navigate("Login"),
-        iconStyle: { color: "#fff" },
-      }}
-      backgroundColor="gray"
-      centerComponent={{
-        text: "Lista de Contatos",
-        style: {
-          color: "#fff",
-          minWidth: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 30,
-        },
-      }}
-      rightComponent={
-        <Button title="+" onPress={() => navigation.navigate("NumRegist")} />
-      }
-    />
-    <ScrollView style={{ width: "100%" }}>
-      {list.map((linha, indice) => (
-        <ListItem key={indice} style={{ width: "100%" }} bottomDivider>
-          <Avatar
-            size={45}
-            rounded
-            source={{
-              uri: "https://www.gravatar.com/avatar/000000000000000000000000000?d=wavatar&f=y",
-            }}
-            onPress={() =>
-              navigation.navigate("NumEdit", {
-                id: linha.id,
-                nome: linha.nome,
-                email: linha.email,
-                cpf: linha.cpf,
-                telefone: linha.telefone,
-              })
-            }
-          />
-          <ListItem.Content>
-            <ListItem.Title>{linha.nome}</ListItem.Title>
-            <ListItem.Subtitle>{linha.email}</ListItem.Subtitle>
-          </ListItem.Content>
-        </ListItem>
-      ))}
-    </ScrollView>
-  </View>
-);
-}
-
-const styles = StyleSheet.create({
-views: {
-  marginBottom: 15,
-  padding: 10,
-  backgroundColor: "#d3d3d3",
-  width: "100%",
-},
-});
-*/

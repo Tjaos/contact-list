@@ -20,16 +20,26 @@ export default function NumberRegistScreen({ navigation }) {
     inserirDados();
   }
   async function inserirDados() {
-    /* axios.defaults.headers.post["Content-Type"] =
-      "application/json;charset=utf-8";
-    axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";*/
-    await axios
+    if (!getNome || !getTelefone || !getEmail){
+      showMessage({
+        message: "Preencha todos os campos antes de salvar!",
+        type: "danger",});
+        return;
+    }
+
+      await axios
       .post(`http://localhost:3000/contatos`, {
         nome: getNome,
         telefone: getTelefone,
         email: getEmail,
       })
-      .then(() => navigation.navigate("Home"))
+      .then(() => {
+        showMessage({
+          message: "Registro adicionado com sucesso!",
+          type: "success",
+        });
+        navigation.navigate("Home")
+      })
 
       .catch(function (error) {
         console.log(error);
@@ -56,30 +66,30 @@ export default function NumberRegistScreen({ navigation }) {
           },
         }}
       />
-      <View style={styles.containerLogin}>
-        <Text style={styles.loginText}>Digite o Nome</Text>
+      <View style={styles.containerText}>
+        <Text style={styles.inputText}>Nome</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setNome(text)}
           value={getNome}
         ></TextInput>
 
-        <Text style={styles.loginText}>Digite o Telefone</Text>
+        <Text style={styles.inputText}>Telefone</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setTelefone(text)}
           value={getTelefone}
         ></TextInput>
 
-        <Text style={styles.loginText}>Digite o email</Text>
+        <Text style={styles.inputText}>Email</Text>
         <TextInput
           style={styles.input}
           onChangeText={(text) => setEmail(text)}
           value={getEmail}
         ></TextInput>
 
-        <TouchableOpacity style={styles.botaoLog} onPress={() => mensagem()}>
-          <Text style={styles.botaoLogin}>Salvar</Text>
+        <TouchableOpacity style={styles.botao} onPress={() => mensagem()}>
+          <Text style={styles.botaoText}>Salvar</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -91,117 +101,47 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F2F2F2",
     alignItems: "center",
+    height: "100%",
   },
-  containerLogin: {
-    top: "20%",
+  containerText: {
+    top: "1%",
     alignItems: "center",
-    width: "100%",
+    width: "90%",
+    marginTop: 90
   },
   input: {
+    paddingLeft: 16,
+    fontSize: 15,
     alignItems: "center",
-    height: 55,
+    justifyContent: "center",
+    height: 45,
     width: "85%",
     backgroundColor: "#ffffff",
+    top: "2%",
     borderRightWidth: 1,
     borderLeftWidth: 1,
     borderTopWidth: 1,
     borderBottomWidth: 1,
+    borderRadius: 20,
   },
-  loginText: {
+  inputText: {
     fontSize: 25,
-  },
-  botaoLog: {
+    marginTop: 5,
     width: "85%",
-    height: 70,
+    padding: 10
+  },
+  botao: {
+    width:100,
+    padding: 10,
     backgroundColor: "#035BFF",
-    marginTop: 30,
+    marginTop: 64,
     justifyContent: "center",
     alignItems: "center",
+    borderRadius:10
   },
-  botaoLogin: {
-    fontSize: 30,
+  botaoText: {
+    fontSize: 20,
     fontWeight: "bold",
     color: "#ffff",
   },
 });
-
-
-/*
-export default function NumberRegistScreen({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <View
-        style={{
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          marginBottom: 30,
-        }}
-      >
-        <Text style={styles.texts}>Nome</Text>
-        <Input style={styles.inputs} />
-      </View>
-
-      <View
-        style={{
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          marginBottom: 30,
-        }}
-      >
-        <Text style={styles.texts}>Email</Text>
-        <Input style={styles.inputs} />
-      </View>
-      <View
-        style={{
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          marginBottom: 30,
-        }}
-      >
-        <Text style={styles.texts}>Telefone</Text>
-        <Input style={styles.inputs} />
-      </View>
-      <View style={{ marginTop: 30 }}>
-          <Button style={{width:150}}
-            title={"Salvar"}
-            type="solid"
-            size="Large"
-            onPress={() => navigation.navigate("Home")}
-          ></Button>
-        </View>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  views: {
-    marginBottom: 15,
-    padding: 10,
-    backgroundColor: "#d3d3d3",
-    width: 450,
-  },
-  inputs: {
-    backgroundColor: "#d3d3d3",
-    height: 30,
-    width: 100,
-    maxWidth: 1000,
-    fontSize: 20,
-  },
-  texts: {
-    paddingBottom: 20,
-    fontSize: 20,
-  },
-});
-*/
