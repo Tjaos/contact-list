@@ -10,13 +10,16 @@ import {
 import { Icon } from "react-native-elements";
 import axios from "axios";
 import FlashMessage, { showMessage } from "react-native-flash-message";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 export default function LoginScreen({ navigation }) {
   const [getEmail, setEmail] = useState();
   const [getSenha, setSenha] = useState();
 
-
-
+  /*
   async function login() {
     if (!getSenha || !getEmail) {
       showMessage({
@@ -26,13 +29,11 @@ export default function LoginScreen({ navigation }) {
       return;
     }
     await axios
-      .get(
-        `http://localhost:3000/usuario?email=${getEmail}&senha=${getSenha}`
-      )
+      .get(`http://localhost:3000/usuario?email=${getEmail}&senha=${getSenha}`)
       .then((response) => {
         if (response.data.length != 0) {
           navigation.navigate("Home");
-        }else{
+        } else {
           showMessage({
             message: "Senha ou Email incorretos!",
             type: "danger",
@@ -41,6 +42,63 @@ export default function LoginScreen({ navigation }) {
       })
       .catch((error) => {
         console.log(error), [getEmail, getSenha];
+      });
+  }*/
+  // Configuração do Firebase
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAA0L1c02K1VqnfSk0utkIztJEc4UKf_9o",
+    authDomain: "login-app-8ee67.firebaseapp.com",
+    projectId: "login-app-8ee67",
+    storageBucket: "login-app-8ee67.appspot.com",
+    messagingSenderId: "9224183843",
+    appId: "1:9224183843:web:6d75434ac2203cfaa4d196",
+    measurementId: "G-066TM4F122",
+  };
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+  function loginFirebase() {
+    signInWithEmailAndPassword(auth, getEmail, getSenha)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigation.navigate("Home");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        showMessage({
+          message: "Email ou senha inválidos!",
+          type: "danger",
+        });
+      });
+  }
+  const provider = new GoogleAuthProvider();
+  function logarComGmail() {
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // IdP data available using getAdditionalUserInfo(result)
+        navigation.navigate("Home");
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
       });
   }
 
@@ -76,7 +134,6 @@ export default function LoginScreen({ navigation }) {
           value={getEmail}
           placeholder="Email"
         />
-        
 
         <Text style={styles.senhaText}> senha</Text>
         <TextInput
@@ -86,9 +143,18 @@ export default function LoginScreen({ navigation }) {
           value={getSenha}
           placeholder="Senha"
         />
-        
-        <TouchableOpacity style={styles.botaoLog} onPress={() => login()}>
+
+        <TouchableOpacity
+          style={styles.botaoLog}
+          onPress={() => loginFirebase()}
+        >
           <Text style={styles.botaoLogin}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.botaoLog}
+          onPress={() => logarComGmail()}
+        >
+          <Text style={styles.botaoLogin}>Login com Gmail</Text>
         </TouchableOpacity>
 
         <TouchableOpacity

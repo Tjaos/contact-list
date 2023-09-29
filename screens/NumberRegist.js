@@ -6,7 +6,6 @@ import axios from "axios";
 import FlashMessage, {showMessage} from "react-native-flash-message";
 
 
-
 export default function NumberRegistScreen({ navigation }) {
   const [getNome, setNome] = useState();
   const [getTelefone, setTelefone] = useState();

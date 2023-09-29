@@ -4,6 +4,36 @@ import { Button, Header, ListItem, Avatar } from "react-native-elements";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
+import { getAuth, signOut } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+function sair(){
+
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAA0L1c02K1VqnfSk0utkIztJEc4UKf_9o",
+    authDomain: "login-app-8ee67.firebaseapp.com",
+    projectId: "login-app-8ee67",
+    storageBucket: "login-app-8ee67.appspot.com",
+    messagingSenderId: "9224183843",
+    appId: "1:9224183843:web:6d75434ac2203cfaa4d196",
+    measurementId: "G-066TM4F122"
+  };
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+
+  signOut(auth).then(() => {
+  // Sign-out successful.
+  navigation.navigate("Login");
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  // An error happened.
+  });
+}
 
 export default function HomeScreen({ navigation }) {
   const [list, setlist] = useState([]);
@@ -34,7 +64,7 @@ export default function HomeScreen({ navigation }) {
 
         leftComponent={{
           text:"Sair", style: {color: "#fff"},
-          onPress: () => navigation.navigate("Login"),
+          onPress: () => sair(),
           iconStyle: { color: "#fff" },
         }}
         centerComponent={{ text: "Listagem", style: { color: "#fff" } }}

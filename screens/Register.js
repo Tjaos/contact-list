@@ -5,28 +5,65 @@ import axios from "axios";
 import FlashMessage, { showMessage } from "react-native-flash-message";
 import { useState, useEffect } from "react";
 import { Header } from "react-native-elements";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function CadastroScreen({ navigation }) {
-  const [getNome, setNome] = useState();
-  const [getCpf, setCpf] = useState();
   const [getEmail, setEmail] = useState();
-  const [getTelefone, setTelefone] = useState();
   const [getSenha, setSenha] = useState();
 
-  async function cadastrar() {
-    if (!getNome || !getCpf || !getEmail || !getSenha) {
+  //***********************FIREBASE*********************************
+  // Configuração do Firebase
+  function cadastrar() {
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAA0L1c02K1VqnfSk0utkIztJEc4UKf_9o",
+      authDomain: "login-app-8ee67.firebaseapp.com",
+      projectId: "login-app-8ee67",
+      storageBucket: "login-app-8ee67.appspot.com",
+      messagingSenderId: "9224183843",
+      appId: "1:9224183843:web:6d75434ac2203cfaa4d196",
+      measurementId: "G-066TM4F122",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, getEmail, getSenha)
+      .then((userCredential) => {
+        // Cadastro bem-sucedido
+        const user = userCredential.user;
+        navigation.navigate("Login");
+        //navigation.navigate("Login");
+        // ...
+      })
+      .catch((error) => {
+        // Erro de autenticação
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        showMessage({
+          message: "Erro durante o Cadastro",
+          type: "danger",
+        });
+      });
+  }
+  //***********************FIREBASE*********************************
+  /*
+  async function cadastrarAxios() {
+    if (!getEmail || !getSenha) {
       showMessage({
         message: "Preencha todos os campos",
         type: "danger",
       });
       return;
-    }else{
+    } else {
       await axios
-        .post("http://localhost:3000/usuario", {
-          nome: getNome,
-          cpf: getCpf,
+        .post("", {
           email: getEmail,
-          telefone: getTelefone,
           senha: getSenha,
         })
         .then(() => {
@@ -40,9 +77,8 @@ export default function CadastroScreen({ navigation }) {
           console.log(error);
         });
     }
-
-    }
-
+  }
+ */
   return (
     <View>
       <FlashMessage position="top" />
@@ -54,7 +90,7 @@ export default function CadastroScreen({ navigation }) {
           iconStyle: { color: "#fff" },
         }}
         centerComponent={{
-          text: "Inserir Contato",
+          text: "Cadastro de Usuário",
           style: {
             color: "#fff",
             alignItems: "center",
@@ -64,6 +100,7 @@ export default function CadastroScreen({ navigation }) {
         }}
       />
       <View style={styles.containerBox}>
+        {/*
         <Text style={styles.texto}>Nome</Text>
         <TextInput
           style={styles.input}
@@ -77,7 +114,7 @@ export default function CadastroScreen({ navigation }) {
           onChangeText={(text) => setCpf(text)}
           value={getCpf}
         />
-
+      */}
         <Text style={styles.texto}>E-mail</Text>
         <TextInput
           style={styles.input}
